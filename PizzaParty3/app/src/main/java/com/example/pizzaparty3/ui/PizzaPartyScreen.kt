@@ -1,5 +1,6 @@
 package com.example.pizzaparty3.ui
 
+import android.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pizzaparty3.HungerLevel
 import com.example.pizzaparty3.ui.theme.PizzaParty3Theme
+import com.example.pizzaparty3.ui.theme.Typography
 
 @Composable
 fun PizzaPartyScreen(
@@ -32,18 +34,18 @@ fun PizzaPartyScreen(
         AppTitle()
         PartySize(
             numPeopleInput = partyViewModel.numPeopleInput,
-            onValueChange = { partyViewModel.numPeopleInput = it; partyViewModel.calculateNumPizzas() }
+            onValueChange = { partyViewModel.numPeopleInput = it }
         )
         HungerLevelSelection(
             hungerLevel = partyViewModel.hungerLevel,
-            onSelected = { partyViewModel.hungerLevel = it; partyViewModel.calculateNumPizzas() }
+            onSelected = { partyViewModel.hungerLevel = it }
         )
         TotalPizzas(
             totalPizzas = partyViewModel.totalPizzas
         )
-//        CalculateButton(
-//            onClick = { partyViewModel.calculateNumPizzas() }
-//        )
+        CalculateButton(
+            onClick = { partyViewModel.calculateNumPizzas() }
+        )
     }
 }
 
@@ -52,6 +54,7 @@ fun AppTitle(modifier: Modifier = Modifier) {
     Text(
         text = "Pizza Party",
         fontSize = 38.sp,
+        style = Typography.titleLarge,
         modifier = modifier.padding(bottom = 16.dp)
     )
 }
@@ -118,7 +121,7 @@ fun CalculateButton(
         onClick = onClick,
         modifier = modifier.fillMaxWidth()
     ) {
-        Text("Calculate")
+        Text("Calculate", style = Typography.titleLarge )
     }
 }
 
